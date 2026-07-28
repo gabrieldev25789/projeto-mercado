@@ -1,8 +1,9 @@
+import Header from "./Components/Header/Header"
 
 function App() {
   return (
     <>
-      <h2>MERCADO</h2>
+    <Header />
      </>
   )
 }
