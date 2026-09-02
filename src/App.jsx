@@ -3,6 +3,7 @@ import Hortifruti from "./Components/Hortifruti/Hortifruti"
 import Acougue from "./Components/Acougue/Acougue"
 import Mercearia from "./Components/Mercearia/Mercearia"
 import Bebidas from "./Components/Bebidas/Bebidas"
+import Limpeza from "./Components/Limpeza/Limpeza"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Acougue /> 
       <Mercearia />
       <Bebidas />
+      <Limpeza />
     </>
   )
 }
