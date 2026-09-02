@@ -5,12 +5,13 @@ import Mercearia from "./Components/Mercearia/Mercearia"
 import Bebidas from "./Components/Bebidas/Bebidas"
 import Limpeza from "./Components/Limpeza/Limpeza"
 import Padaria from "./Components/Padaria/Padaria"
+import { hortifruti } from "../data/dados.js"
 
 function App() {
   return (
     <>
       <Header />
-      <Hortifruti />
+      <Hortifruti titulo={hortifruti.titulo} produtos={hortifruti.produtos}/>
       <Acougue /> 
       <Mercearia />
       <Bebidas />
