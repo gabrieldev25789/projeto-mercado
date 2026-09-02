@@ -4,6 +4,7 @@ import Acougue from "./Components/Acougue/Acougue"
 import Mercearia from "./Components/Mercearia/Mercearia"
 import Bebidas from "./Components/Bebidas/Bebidas"
 import Limpeza from "./Components/Limpeza/Limpeza"
+import Padaria from "./Components/Padaria/Padaria"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Mercearia />
       <Bebidas />
       <Limpeza />
+      <Padaria />
     </>
   )
 }
