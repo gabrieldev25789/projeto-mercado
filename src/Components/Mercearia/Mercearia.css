@@ -10,6 +10,9 @@
   text-transform: uppercase;
   color: #f0f0f0;
   margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  border-left: 6px solid #ffcc00;
+  padding-left: 10px;
 }
 
 .mercearia__grid {
@@ -22,29 +25,41 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
+  background: #3a3838;
+  border: 1px solid #4a4747;
   border-radius: 8px;
   padding: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mercearia__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  border-color: #ffcc00;
 }
 
 .mercearia__card-imagem {
   width: 100%;
   height: 100px;
-  background: #f0f0f0;
+  background: #a8a4a4;
   border-radius: 6px;
 }
 
 .mercearia__card-nome {
   font-size: 14px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #f0f0f0;
 }
 
 .mercearia__card-preco {
-  font-size: 14px;
-  font-weight: 700;
-  color: #e02020;
+  align-self: flex-start;
+  font-size: 15px;
+  font-weight: 800;
+  color: #1a1a1a;
+  background: #ffcc00;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transform: rotate(-2deg);
 }
 
 @media (max-width: 640px) {
