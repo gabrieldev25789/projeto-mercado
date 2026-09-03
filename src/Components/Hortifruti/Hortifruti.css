@@ -78,6 +78,118 @@
   border-radius: 5px;
 }
 
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modal__conteudo {
+  position: relative;
+  background: #3a3838;
+  border: 1px solid #4a4747;
+  border-radius: 12px;
+  padding: 28px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal__fechar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #ececec;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal__titulo {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ececec;
+}
+
+.modal__preco {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2e9e44;
+  margin-top: -12px;
+}
+
+.modal__label {
+  font-size: 13px;
+  color: #b8b8b8;
+}
+
+.modal__opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modal__opcao {
+  background: #2b2a2a;
+  border: 1px solid #4a4747;
+  color: #ececec;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.modal__opcao:hover {
+  border-color: #2e9e44;
+  background: #333131;
+}
+
+.modal__personalizado {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal__input {
+  background: #2b2a2a;
+  border: 1px solid #4a4747;
+  color: #ececec;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.modal__input:focus {
+  outline: none;
+  border-color: #2e9e44;
+}
+
+.modal__confirmar {
+  background: #2e9e44;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.modal__confirmar:hover {
+  background: #268038;
+}
+
 @media (max-width: 640px) {
   .hortifruti__grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
