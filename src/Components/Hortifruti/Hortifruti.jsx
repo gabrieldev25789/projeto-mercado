@@ -3,9 +3,11 @@ import "./Hortifruti.css";
 function Hortifruti({ titulo, produtos }) {
 
   return (
-    <section id="hortifruti" className="hortifruti">
-      <h2 className="hortifruti__titulo">{titulo}</h2>
-
+  <section className="hortifruti">
+      <div className="hortifruti__banner">
+        <h2 className="hortifruti__titulo">{titulo}</h2>
+        <p className="hortifruti__subtitulo">Frutas, legumes e verduras fresquinhos</p>
+      </div>
       <div className="hortifruti__grid">
         {produtos.map((produto) => (
           <div className="hortifruti__card" key={produto.nome}>
