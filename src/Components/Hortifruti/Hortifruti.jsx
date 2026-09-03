@@ -21,6 +21,22 @@ function Hortifruti({ titulo, produtos }) {
     setProdutoEscolhido(null)
   }
 
+const [precoFinal, setPrecoFinal] = useState("")
+
+function escolherQtd(valor) {
+  const precoPorKg = Number(
+    produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
+  );
+
+  setPrecoFinal((valor / 1000) * precoPorKg)
+
+  console.log(
+    precoFinal.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    })
+  );
+}
   return (
     <>
       <section className="hortifruti">
@@ -49,12 +65,12 @@ function Hortifruti({ titulo, produtos }) {
 
               <p className="modal__label">Escolha a quantidade</p>
               <div className="modal__opcoes">
-                <button className="modal__opcao">500 g</button>
-                <button className="modal__opcao">700 g</button>
-                <button className="modal__opcao">1000 g</button>
-                <button className="modal__opcao">1500 g</button>
-                <button className="modal__opcao">2000 g</button>
-                <button className="modal__opcao">2500 g</button>
+                <button className="modal__opcao" onClick={()=> escolherQtd(500)}>500 g</button>
+                <button className="modal__opcao" onClick={()=> escolherQtd(700)}>700 g</button>
+                <button className="modal__opcao" onClick={()=> escolherQtd(1000)}>1000 g</button>
+                <button className="modal__opcao" onClick={()=> escolherQtd(1500)}>1500 g</button>
+                <button className="modal__opcao" onClick={()=> escolherQtd(2000)}>2000 g</button>
+                <button className="modal__opcao" onClick={()=> escolherQtd(2500)}>2500 g</button>
               </div>
 
               <div className="modal__personalizado">
@@ -63,6 +79,7 @@ function Hortifruti({ titulo, produtos }) {
               </div>
 
               <button className="modal__confirmar">Adicionar ao carrinho</button>
+              <h2>{(precoFinal.toFixed(2)).replace(".", ",")}</h2>
             </div>
           </div>
         )}
