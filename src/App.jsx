@@ -5,17 +5,8 @@ import Acougue from "./components/Acougue/Acougue.jsx";
 import Mercearia from "./components/Mercearia/Mercearia.jsx";
 import Bebidas from "./components/Bebidas/Bebidas.jsx";
 import Limpeza from "./components/Limpeza/Limpeza.jsx";
-import Padaria from "./components/Padaria/Padaria.jsx";
+import Padaria from "./Components/Padaria/Padaria.jsx";
 import { hortifruti } from "../data/dados.js"
-
-const corredores = [
-  { id: "hortifruti", nome: "Hortifruti" },
-  { id: "acougue", nome: "Açougue" },
-  { id: "mercearia", nome: "Mercearia" },
-  { id: "bebidas", nome: "Bebidas" },
-  { id: "limpeza", nome: "Limpeza" },
-  { id: "padaria", nome: "Padaria" },
-];
 
 function App() {
   const [ativo, setAtivo] = useState(null);
@@ -41,24 +32,7 @@ function App() {
 
 return (
   <>
-    <Header />
-    <nav>
-      <ul style={{ display: "flex", gap: "1rem", listStyle: "none" }}>
-        {corredores.map((c) => (
-          <li key={c.id}>
-            
-              <a href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setAtivo(c.id);
-              }}
-            >
-              {c.nome}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <Header onSelecionar={setAtivo} />
 
     {renderCorredor()}
   </>
