@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Header from "./Components/Header/Header.jsx"
-import Hortifruti from "./components/Hortifruti/Hortifruti.jsx";
-import Acougue from "./components/Acougue/Acougue.jsx";
-import Mercearia from "./components/Mercearia/Mercearia.jsx";
-import Bebidas from "./components/Bebidas/Bebidas.jsx";
-import Limpeza from "./components/Limpeza/Limpeza.jsx";
+import Hortifruti from "./Components/Hortifruti/Hortifruti.jsx";
+import Acougue from "./Components/Acougue/Acougue.jsx";
+import Mercearia from "./Components/Mercearia/Mercearia.jsx";
+import Bebidas from "./Components/Bebidas/Bebidas.jsx";
+import Limpeza from "./Components/Limpeza/Limpeza.jsx";
 import Padaria from "./Components/Padaria/Padaria.jsx";
 import { hortifruti } from "../data/dados.js"
 
