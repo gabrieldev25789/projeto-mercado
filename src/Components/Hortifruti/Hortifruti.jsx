@@ -4,6 +4,8 @@ import "./Hortifruti.css";
 function Hortifruti({ titulo, produtos }) {
 
   const [produtoEscolhido, setProdutoEscolhido] = useState(null)
+  const [precoFinal, setPrecoFinal] = useState(0)
+  const [mostrarPreco, setMostrarPreco] = useState(false)
 
   function escolherProduto(produto){
     setProdutoEscolhido(produto)
@@ -18,12 +20,13 @@ function Hortifruti({ titulo, produtos }) {
   }
 
   function fecharModal(){
+    setPrecoFinal(0)
     setProdutoEscolhido(null)
+    setMostrarPreco(false)
   }
 
-const [precoFinal, setPrecoFinal] = useState("")
-
 function escolherQtd(valor) {
+  setMostrarPreco(true)
   const precoPorKg = Number(
     produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
   );
@@ -79,7 +82,7 @@ function escolherQtd(valor) {
               </div>
 
               <button className="modal__confirmar">Adicionar ao carrinho</button>
-              <h2>{(precoFinal.toFixed(2)).replace(".", ",")}</h2>
+              {mostrarPreco && <h2>{(precoFinal.toFixed(2)).replace(".", ",")}</h2>}
             </div>
           </div>
         )}
