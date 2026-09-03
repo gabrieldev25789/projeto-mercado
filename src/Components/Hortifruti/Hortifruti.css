@@ -1,68 +1,89 @@
 .hortifruti {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 20px;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 0 48px;
+  background: #2b2a2a;
+}
+
+.hortifruti__banner {
+  background: linear-gradient(135deg, #1f7a30 0%, #2e9e44 100%);
+  padding: 40px 20px 32px;
+  margin-bottom: 32px;
+  border-bottom: 4px solid #1a5c26;
 }
 
 .hortifruti__titulo {
-  font-size: 22px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: clamp(28px, 4vw, 42px);
   font-weight: 800;
-  text-transform: uppercase;
-  color: #ececec;
-  margin-bottom: 16px;
-  letter-spacing: 0.5px;
-  border-left: 6px solid #2e9e44;
-  padding-left: 10px;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+.hortifruti__subtitulo {
+  max-width: 1200px;
+  margin: 8px auto 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .hortifruti__grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
 }
 
 .hortifruti__card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   background: #3a3838;
   border: 1px solid #4a4747;
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: 10px;
+  padding: 16px;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .hortifruti__card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
   border-color: #2e9e44;
 }
 
 .hortifruti__card-imagem {
   width: 100%;
-  height: 100px;
+  aspect-ratio: 1 / 1;
   background: #f0f0f0;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .hortifruti__card-nome {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #f0f0f0;
 }
 
 .hortifruti__card-preco {
   align-self: flex-start;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
   color: #fff;
   background: #2e9e44;
-  padding: 3px 8px;
-  border-radius: 4px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 @media (max-width: 640px) {
   .hortifruti__grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  .hortifruti__banner {
+    padding: 28px 16px 24px;
   }
 }
