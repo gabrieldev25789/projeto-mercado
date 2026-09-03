@@ -2,6 +2,14 @@ import "./Hortifruti.css";
 
 function Hortifruti({ titulo, produtos }) {
 
+  function escolherProduto(produto, preco){
+    console.log(produto, preco)
+  }
+
+  function formataPreco(preco){
+   return preco.replace(",", ".")
+  }
+
   return (
   <section className="hortifruti">
       <div className="hortifruti__banner">
@@ -10,10 +18,10 @@ function Hortifruti({ titulo, produtos }) {
       </div>
       <div className="hortifruti__grid">
         {produtos.map((produto) => (
-          <div className="hortifruti__card" key={produto.nome}>
+          <div onClick={() => escolherProduto(produto.nome, formataPreco(produto.preco))} className="hortifruti__card" key={produto.nome}>
             <div className="hortifruti__card-imagem" />
             <span className="hortifruti__card-nome">{produto.nome}</span>
-            <span className="hortifruti__card-preco">{produto.preco}</span>
+            <span className="hortifruti__card-preco">R$ {produto.preco}</span>
           </div>
         ))}
       </div>
