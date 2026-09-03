@@ -1,6 +1,6 @@
 import "./Header.css";
 
-function Header({ onSelecionar }) {
+function Header() {
   return (
     <header className="header">
       <div className="header__top">
@@ -28,16 +28,16 @@ function Header({ onSelecionar }) {
 
       <nav className="header__secoes">
         <ul>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); onSelecionar("hortifruti"); }}>Hortifruti</a></li>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); onSelecionar("acougue"); }}>Açougue</a></li>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); onSelecionar("mercearia"); }}>Mercearia</a></li>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); onSelecionar("bebidas"); }}>Bebidas</a></li>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); onSelecionar("limpeza"); }}>Limpeza</a></li>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); onSelecionar("padaria"); }}>Padaria</a></li>
+          <li><a href="#hortifruti">Hortifruti</a></li>
+          <li><a href="#acougue">Açougue</a></li>
+          <li><a href="#mercearia">Mercearia</a></li>
+          <li><a href="#bebidas">Bebidas</a></li>
+          <li><a href="#limpeza">Limpeza</a></li>
+          <li><a href="#padaria">Padaria</a></li>
         </ul>
       </nav>
     </header>
   );
 }
 
-export default Header;
+export default Header 

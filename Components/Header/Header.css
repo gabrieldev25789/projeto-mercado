@@ -1,0 +1,139 @@
+.header {
+  background: #1a1a1a;
+  border-bottom: 6px solid #f2c200;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.header__top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
+}
+
+.header__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  text-decoration: none;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+
+.header__logo-atac {
+  color: #ffffff;
+}
+
+.header__logo-dao {
+  color: #f2c200;
+}
+
+.header__busca {
+  display: flex;
+  flex: 0 1 520px;
+  width: 100%;
+}
+
+.header__busca-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 15px;
+  outline: none;
+}
+
+.header__busca-btn {
+  background: #f2c200;
+  border: none;
+  padding: 0 16px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.header__busca-btn:hover {
+  background: #d9ad00;
+}
+
+.header__carrinho {
+  position: relative;
+  font-size: 26px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header__carrinho-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #e02020;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.header__secoes {
+  background: #262626;
+  overflow-x: auto;
+}
+
+.header__secoes ul {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  list-style: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  white-space: nowrap;
+}
+
+.header__secoes a {
+  display: block;
+  padding: 10px 14px;
+  color: #d9d9d9;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.header__secoes a:hover {
+  color: #f2c200;
+  border-color: #f2c200;
+}
+
+@media (max-width: 640px) {
+  .header__top {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header__busca {
+    order: 3;
+    max-width: none;
+    width: 100%;
+  }
+
+  .header__logo {
+    font-size: 22px;
+  }
+}
