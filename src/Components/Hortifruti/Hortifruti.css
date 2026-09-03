@@ -1,0 +1,68 @@
+.hortifruti {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.hortifruti__titulo {
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ececec;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  border-left: 6px solid #2e9e44;
+  padding-left: 10px;
+}
+
+.hortifruti__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.hortifruti__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #3a3838;
+  border: 1px solid #4a4747;
+  border-radius: 8px;
+  padding: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hortifruti__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  border-color: #2e9e44;
+}
+
+.hortifruti__card-imagem {
+  width: 100%;
+  height: 100px;
+  background: #f0f0f0;
+  border-radius: 6px;
+}
+
+.hortifruti__card-nome {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f0f0f0;
+}
+
+.hortifruti__card-preco {
+  align-self: flex-start;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  background: #2e9e44;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  .hortifruti__grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
