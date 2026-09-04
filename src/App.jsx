@@ -11,10 +11,12 @@ import { hortifruti } from "../data/dados.js"
 function App() {
   const [ativo, setAtivo] = useState(null);
 
+  const [carrinhoQtd, setCarrinhoQtd] = useState(0)
+
   function renderCorredor() {
     switch (ativo) {
       case "hortifruti":
-        return <Hortifruti titulo={hortifruti.titulo} produtos={hortifruti.produtos} />;
+        return <Hortifruti setCarrinhoQtd={setCarrinhoQtd} titulo={hortifruti.titulo} produtos={hortifruti.produtos} />;
       case "acougue":
         return <Acougue />;
       case "mercearia":
@@ -32,7 +34,7 @@ function App() {
 
 return (
   <>
-    <Header onSelecionar={setAtivo} />
+    <Header onSelecionar={setAtivo} carrinhoQtd={carrinhoQtd}/>
 
     {renderCorredor()}
   </>
