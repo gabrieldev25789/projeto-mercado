@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import "./Hortifruti.css";
 
-function Hortifruti({ titulo, produtos, setCarrinhoQtd }) {
+function Hortifruti({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharCarrinho }) {
 
   const [produtoEscolhido, setProdutoEscolhido] = useState(null)
   const [precoFinal, setPrecoFinal] = useState(0)
   const [mostrarPreco, setMostrarPreco] = useState(false)
   const [valorDigitado, setValorDigitado] = useState(0)
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false)
+
+  const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([])
   
   function escolherProduto(produto){
     setProdutoEscolhido(produto)
@@ -60,17 +62,28 @@ function escolherQtd(valor) {
 }
 
 function addCarrinho(){
+  setProdutosNoCarrinho((prev) => [
+    ...prev,
+    {
+      ...produtoEscolhido,
+      precoFinal: precoFinal.toFixed(2)
+    }
+  ])
+  setCarrinhoQtd((prev) => prev + 1)
   setMostrarConfirmacao(true)  
   fecharModal()
-  setCarrinhoQtd((prev)=> prev + 1)
   console.log(precoFinal.toFixed(2))
 }
+
+useEffect(()=>{
+  console.log(produtosNoCarrinho)
+}, [produtosNoCarrinho])
 
 function fecharConfirmacao(){
   setMostrarConfirmacao(false)
 }
 
-   return (
+  return (
     <>
       <section className="hortifruti">
           <div className="hortifruti__banner">
@@ -131,6 +144,34 @@ function fecharConfirmacao(){
             </div>
           </div>
         )}
+        
+      {mostrarCarrinho && (
+        <div className="carrinho__overlay" onClick={fecharCarrinho}>
+          <div className="carrinho__conteudo" onClick={(e) => e.stopPropagation()}>
+            <button className="carrinho__fechar" onClick={fecharCarrinho} aria-label="Fechar">✕</button>
+            <h2 className="carrinho__titulo">Seu carrinho</h2>
+
+            {produtosNoCarrinho.length === 0 ? (
+              <p className="carrinho__vazio">Seu carrinho está vazio</p>
+            ) : (
+              <div className="carrinho__lista">
+                {produtosNoCarrinho.map((produto, index) => (
+                  <div className="carrinho__card" key={index}>
+                    <div className="carrinho__card-imagem" />
+                    <div className="carrinho__card-info">
+                      <span className="carrinho__card-nome">{produto.nome}</span>
+                      <span className="carrinho__card-qtd">{valorDigitado} g</span>
+                    </div>
+                    <span className="carrinho__card-preco">
+                      R$ {produto.precoFinal.replace(".", ",")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }
