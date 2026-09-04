@@ -10,6 +10,9 @@ function Hortifruti({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharC
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false)
 
   const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([])
+
+  const [qtdEscolhida, setQtdEscolhida] = useState(0)
+  const [qtdEscrita, setQtdEscrita] = useState(0)
   
   function escolherProduto(produto){
     setProdutoEscolhido(produto)
@@ -27,6 +30,8 @@ function Hortifruti({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharC
 
 function digitarQtd(valor){
   if(valor < 0 || valor > 100000) return 
+  setQtdEscrita(valor)
+  setQtdEscolhida(0)
 
   setValorDigitado(valor)
 
@@ -45,6 +50,8 @@ function digitarQtd(valor){
 }
 
 function escolherQtd(valor) {
+  setQtdEscrita(0)
+  setQtdEscolhida(valor)
   setValorDigitado(0)
   setMostrarPreco(true)
   const precoPorKg = Number(
@@ -66,7 +73,8 @@ function addCarrinho(){
     ...prev,
     {
       ...produtoEscolhido,
-      precoFinal: precoFinal.toFixed(2)
+      precoFinal: precoFinal.toFixed(2),
+      quantidade: {qtdEscolhida: qtdEscolhida, qtdEscrita: qtdEscrita}
     }
   ])
   setCarrinhoQtd((prev) => prev + 1)
@@ -160,7 +168,7 @@ function fecharConfirmacao(){
                     <div className="carrinho__card-imagem" />
                     <div className="carrinho__card-info">
                       <span className="carrinho__card-nome">{produto.nome}</span>
-                      <span className="carrinho__card-qtd">{valorDigitado} g</span>
+                      <span className="carrinho__card-qtd">{produto.quantidade.qtdEscolhida ? produto.quantidade.qtdEscolhida : produto.quantidade.qtdEscrita} g</span>
                     </div>
                     <span className="carrinho__card-preco">
                       R$ {produto.precoFinal.replace(".", ",")}
