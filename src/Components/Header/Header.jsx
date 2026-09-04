@@ -1,6 +1,6 @@
 import "./Header.css";
 
-function Header({ onSelecionar }) {
+function Header({ onSelecionar, carrinhoQtd}) {
   return (
     <header className="header">
       <div className="header__top">
@@ -22,7 +22,7 @@ function Header({ onSelecionar }) {
 
         <a href="/carrinho" className="header__carrinho">
           🛒
-          <span className="header__carrinho-count">0</span>
+          <span className="header__carrinho-count">{carrinhoQtd}</span>
         </a>
       </div>
 
