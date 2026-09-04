@@ -7,6 +7,10 @@ function Hortifruti({ titulo, produtos }) {
   const [precoFinal, setPrecoFinal] = useState(0)
   const [mostrarPreco, setMostrarPreco] = useState(false)
   const [valorDigitado, setValorDigitado] = useState(0)
+<<<<<<< HEAD
+=======
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false)
+>>>>>>> hortfruit
   
   function escolherProduto(produto){
     setProdutoEscolhido(produto)
@@ -23,6 +27,11 @@ function Hortifruti({ titulo, produtos }) {
   }
 
 function escolherValor(valor){
+<<<<<<< HEAD
+=======
+  if(valor < 0 || valor > 100000) return 
+
+>>>>>>> hortfruit
   setValorDigitado(valor)
 
   const precoPorKg = Number(
@@ -40,6 +49,7 @@ function escolherValor(valor){
 }
 
 function escolherQtd(valor) {
+  setValorDigitado(0)
   setMostrarPreco(true)
   const precoPorKg = Number(
     produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
@@ -55,7 +65,17 @@ function escolherQtd(valor) {
   );
 }
 
-  return (
+function addCarrinho(){
+  setMostrarConfirmacao(true)  
+  fecharModal()
+  console.log(precoFinal.toFixed(2))
+}
+
+function fecharConfirmacao(){
+  setMostrarConfirmacao(false)
+}
+
+   return (
     <>
       <section className="hortifruti">
           <div className="hortifruti__banner">
@@ -101,8 +121,18 @@ function escolherQtd(valor) {
                 placeholder="Ex: 850" className="modal__input" />
               </div>
 
-              <button className="modal__confirmar">Adicionar ao carrinho</button>
-              {mostrarPreco && <h2>{(precoFinal.toFixed(2)).replace(".", ",")}</h2>}
+              <button className="modal__confirmar" onClick={() => addCarrinho()}>Adicionar ao carrinho</button>
+              {mostrarPreco && <h2>Total: {(precoFinal.toFixed(2)).replace(".", ",")}</h2>}
+            </div>
+          </div>
+        )}
+
+        {mostrarConfirmacao && (
+          <div className="confirmacao__overlay" onClick={fecharConfirmacao}>
+            <div className="confirmacao__conteudo" onClick={(e) => e.stopPropagation()}>
+              <button className="confirmacao__fechar" onClick={fecharConfirmacao} aria-label="Fechar">✕</button>
+              <p className="confirmacao__icone">✅</p>
+              <h2>Produto adicionado ao carrinho!</h2>
             </div>
           </div>
         )}
