@@ -1,6 +1,6 @@
 import "./Header.css";
 
-function Header({ onSelecionar, carrinhoQtd}) {
+function Header({ onSelecionar, carrinhoQtd, mostrarProdutos}) {
   return (
     <header className="header">
       <div className="header__top">
@@ -20,7 +20,7 @@ function Header({ onSelecionar, carrinhoQtd}) {
           </button>
         </form>
 
-        <a href="/carrinho" className="header__carrinho">
+        <a href="#" className="header__carrinho" onClick={mostrarProdutos}>
           🛒
           <span className="header__carrinho-count">{carrinhoQtd}</span>
         </a>
