@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Hortifruti.css";
 
-function Hortifruti({ titulo, produtos }) {
+function Hortifruti({ titulo, produtos, setCarrinhoQtd }) {
 
   const [produtoEscolhido, setProdutoEscolhido] = useState(null)
   const [precoFinal, setPrecoFinal] = useState(0)
@@ -23,7 +23,7 @@ function Hortifruti({ titulo, produtos }) {
     setMostrarPreco(false)
   }
 
-function escolherValor(valor){
+function digitarQtd(valor){
   if(valor < 0 || valor > 100000) return 
 
   setValorDigitado(valor)
@@ -62,6 +62,7 @@ function escolherQtd(valor) {
 function addCarrinho(){
   setMostrarConfirmacao(true)  
   fecharModal()
+  setCarrinhoQtd((prev)=> prev + 1)
   console.log(precoFinal.toFixed(2))
 }
 
@@ -109,7 +110,7 @@ function fecharConfirmacao(){
                 <label htmlFor="peso-custom" className="modal__label">Ou digite um valor em gramas</label>
                 <input 
                 value={valorDigitado} 
-                onChange={(e)=> escolherValor(e.target.value)}
+                onChange={(e)=> digitarQtd(e.target.value)}
                 id="peso-custom" 
                 type="number" 
                 placeholder="Ex: 850" className="modal__input" />
