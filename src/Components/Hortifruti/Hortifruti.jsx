@@ -6,7 +6,8 @@ function Hortifruti({ titulo, produtos }) {
   const [produtoEscolhido, setProdutoEscolhido] = useState(null)
   const [precoFinal, setPrecoFinal] = useState(0)
   const [mostrarPreco, setMostrarPreco] = useState(false)
-
+  const [valorDigitado, setValorDigitado] = useState(0)
+  
   function escolherProduto(produto){
     setProdutoEscolhido(produto)
   }
@@ -15,15 +16,28 @@ function Hortifruti({ titulo, produtos }) {
     console.log(produtoEscolhido)
   }, [produtoEscolhido])
 
-  function formataPreco(preco){
-   return preco.replace(",", ".")
-  }
-
   function fecharModal(){
     setPrecoFinal(0)
     setProdutoEscolhido(null)
     setMostrarPreco(false)
   }
+
+function escolherValor(valor){
+  setValorDigitado(valor)
+
+  const precoPorKg = Number(
+    produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
+  );
+
+  setPrecoFinal((valor / 1000) * precoPorKg)
+
+  console.log(precoFinal.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    }))
+
+  setMostrarPreco(true)
+}
 
 function escolherQtd(valor) {
   setMostrarPreco(true)
@@ -40,6 +54,7 @@ function escolherQtd(valor) {
     })
   );
 }
+
   return (
     <>
       <section className="hortifruti">
@@ -78,7 +93,12 @@ function escolherQtd(valor) {
 
               <div className="modal__personalizado">
                 <label htmlFor="peso-custom" className="modal__label">Ou digite um valor em gramas</label>
-                <input id="peso-custom" type="number" placeholder="Ex: 850" className="modal__input" />
+                <input 
+                value={valorDigitado} 
+                onChange={(e)=> escolherValor(e.target.value)}
+                id="peso-custom" 
+                type="number" 
+                placeholder="Ex: 850" className="modal__input" />
               </div>
 
               <button className="modal__confirmar">Adicionar ao carrinho</button>
