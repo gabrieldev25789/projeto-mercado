@@ -12,11 +12,21 @@ function App() {
   const [ativo, setAtivo] = useState(null);
 
   const [carrinhoQtd, setCarrinhoQtd] = useState(0)
+  const [mostrarCarrinho, setMostrarCarrinho] = useState(false)
+
+  function mostrarProdutos(){
+    console.log("asdsad")
+    setMostrarCarrinho(true)
+  }
+
+  function fecharCarrinho(){
+  setMostrarCarrinho(false)
+}
 
   function renderCorredor() {
     switch (ativo) {
       case "hortifruti":
-        return <Hortifruti setCarrinhoQtd={setCarrinhoQtd} titulo={hortifruti.titulo} produtos={hortifruti.produtos} />;
+        return <Hortifruti setCarrinhoQtd={setCarrinhoQtd} titulo={hortifruti.titulo} produtos={hortifruti.produtos} mostrarCarrinho={mostrarCarrinho} fecharCarrinho={fecharCarrinho}/>;
       case "acougue":
         return <Acougue />;
       case "mercearia":
@@ -34,7 +44,8 @@ function App() {
 
 return (
   <>
-    <Header onSelecionar={setAtivo} carrinhoQtd={carrinhoQtd}/>
+    <Header onSelecionar={setAtivo} carrinhoQtd={carrinhoQtd} 
+    mostrarProdutos={mostrarProdutos}/>
 
     {renderCorredor()}
   </>
