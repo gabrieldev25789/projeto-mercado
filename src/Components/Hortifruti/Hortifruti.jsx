@@ -7,10 +7,7 @@ function Hortifruti({ titulo, produtos }) {
   const [precoFinal, setPrecoFinal] = useState(0)
   const [mostrarPreco, setMostrarPreco] = useState(false)
   const [valorDigitado, setValorDigitado] = useState(0)
-<<<<<<< HEAD
-=======
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false)
->>>>>>> hortfruit
   
   function escolherProduto(produto){
     setProdutoEscolhido(produto)
@@ -27,11 +24,8 @@ function Hortifruti({ titulo, produtos }) {
   }
 
 function escolherValor(valor){
-<<<<<<< HEAD
-=======
   if(valor < 0 || valor > 100000) return 
 
->>>>>>> hortfruit
   setValorDigitado(valor)
 
   const precoPorKg = Number(
