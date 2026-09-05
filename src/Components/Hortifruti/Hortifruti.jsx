@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "./Hortifruti.css";
 
-function Hortifruti({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharCarrinho }) {
+function Hortifruti({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharCarrinho, produtoEscolhido, setProdutoEscolhido }) {
 
-  const [produtoEscolhido, setProdutoEscolhido] = useState(null)
   const [precoFinal, setPrecoFinal] = useState(0)
   const [mostrarPreco, setMostrarPreco] = useState(false)
   const [valorDigitado, setValorDigitado] = useState(0)
