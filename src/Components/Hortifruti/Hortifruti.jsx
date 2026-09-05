@@ -18,54 +18,31 @@ function Hortifruti({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharC
     setProdutoEscolhido(produto)
   }
 
-  useEffect(()=>{
-    console.log(produtoEscolhido)
-  }, [produtoEscolhido])
-
   function fecharModal(){
     setPrecoFinal(0)
     setProdutoEscolhido(null)
     setMostrarPreco(false)
   }
 
-function digitarQtd(valor){
-  if(valor < 0 || valor > 100000) return 
-  setQtdEscrita(valor)
-  setQtdEscolhida(0)
+function atualizarQtd(valor, origem) {
+  if (valor < 0 || valor > 100000) return
 
-  setValorDigitado(valor)
+  if (origem === "digitado") {
+    setQtdEscrita(valor)
+    setQtdEscolhida(0)
+    setValorDigitado(valor)
+  } else {
+    setQtdEscrita(0)
+    setQtdEscolhida(valor)
+    setValorDigitado(0)
+  }
 
   const precoPorKg = Number(
     produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
-  );
+  )
 
   setPrecoFinal((valor / 1000) * precoPorKg)
-
-  console.log(precoFinal.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    }))
-
   setMostrarPreco(true)
-}
-
-function escolherQtd(valor) {
-  setQtdEscrita(0)
-  setQtdEscolhida(valor)
-  setValorDigitado(0)
-  setMostrarPreco(true)
-  const precoPorKg = Number(
-    produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
-  );
-
-  setPrecoFinal((valor / 1000) * precoPorKg)
-
-  console.log(
-    precoFinal.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    })
-  );
 }
 
 function addCarrinho(){
@@ -119,19 +96,19 @@ function fecharConfirmacao(){
 
               <p className="modal__label">Escolha a quantidade</p>
               <div className="modal__opcoes">
-                <button className="modal__opcao" onClick={()=> escolherQtd(500)}>500 g</button>
-                <button className="modal__opcao" onClick={()=> escolherQtd(700)}>700 g</button>
-                <button className="modal__opcao" onClick={()=> escolherQtd(1000)}>1000 g</button>
-                <button className="modal__opcao" onClick={()=> escolherQtd(1500)}>1500 g</button>
-                <button className="modal__opcao" onClick={()=> escolherQtd(2000)}>2000 g</button>
-                <button className="modal__opcao" onClick={()=> escolherQtd(2500)}>2500 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(500, "botao")}>500 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(700, "botao")}>700 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(1000, "botao")}>1000 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(1500, "botao")}>1500 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(2000, "botao")}>2000 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(2500, "botao")}>2500 g</button>
               </div>
 
               <div className="modal__personalizado">
                 <label htmlFor="peso-custom" className="modal__label">Ou digite um valor em gramas</label>
                 <input 
                 value={valorDigitado} 
-                onChange={(e)=> digitarQtd(e.target.value)}
+                onChange={(e)=> atualizarQtd(e.target.value, "digitado")}
                 id="peso-custom" 
                 type="number" 
                 placeholder="Ex: 850" className="modal__input" />
