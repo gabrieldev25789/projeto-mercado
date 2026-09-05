@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Hortifruti.css";
 
 function Hortifruti({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharCarrinho }) {
@@ -57,12 +57,11 @@ function addCarrinho(){
   setCarrinhoQtd((prev) => prev + 1)
   setMostrarConfirmacao(true)  
   fecharModal()
-  console.log(precoFinal.toFixed(2))
+  setQtdEscrita(0)
+  setQtdEscolhida(0)
+  setValorDigitado(0)
+  setMostrarPreco(false)
 }
-
-useEffect(()=>{
-  console.log(produtosNoCarrinho)
-}, [produtosNoCarrinho])
 
 function fecharConfirmacao(){
   setMostrarConfirmacao(false)
