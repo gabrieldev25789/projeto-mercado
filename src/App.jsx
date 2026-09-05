@@ -14,6 +14,8 @@ function App() {
   const [carrinhoQtd, setCarrinhoQtd] = useState(0)
   const [mostrarCarrinho, setMostrarCarrinho] = useState(false)
 
+  const [produtoEscolhido, setProdutoEscolhido] = useState(null)
+
   function mostrarProdutos(){
     console.log("asdsad")
     setMostrarCarrinho(true)
@@ -26,7 +28,14 @@ function App() {
   function renderCorredor() {
     switch (ativo) {
       case "hortifruti":
-        return <Hortifruti setCarrinhoQtd={setCarrinhoQtd} titulo={hortifruti.titulo} produtos={hortifruti.produtos} mostrarCarrinho={mostrarCarrinho} fecharCarrinho={fecharCarrinho}/>;
+        return <Hortifruti 
+        setCarrinhoQtd={setCarrinhoQtd} 
+        titulo={hortifruti.titulo} 
+        produtos={hortifruti.produtos} 
+        mostrarCarrinho={mostrarCarrinho} 
+        fecharCarrinho={fecharCarrinho}
+        setProdutoEscolhido={setProdutoEscolhido}
+        produtoEscolhido={produtoEscolhido}/>;
       case "acougue":
         return <Acougue />;
       case "mercearia":
