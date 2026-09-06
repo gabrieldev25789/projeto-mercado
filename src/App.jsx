@@ -6,7 +6,7 @@ import Mercearia from "./Components/Mercearia/Mercearia.jsx";
 import Bebidas from "./Components/Bebidas/Bebidas.jsx";
 import Limpeza from "./Components/Limpeza/Limpeza.jsx";
 import Padaria from "./Components/Padaria/Padaria.jsx";
-import { hortifruti } from "../data/dados.js"
+import { hortifruti, acougue } from "../data/dados.js"
 
 function App() {
   const [ativo, setAtivo] = useState(null);
@@ -36,8 +36,16 @@ function App() {
         fecharCarrinho={fecharCarrinho}
         setProdutoEscolhido={setProdutoEscolhido}
         produtoEscolhido={produtoEscolhido}/>;
+
       case "acougue":
-        return <Acougue />;
+        return <Acougue 
+        titulo={acougue.titulo}
+        produtos={acougue.produtos}
+        setCarrinhoQtd={setCarrinhoQtd}
+        mostrarCarrinho={mostrarCarrinho}
+        fecharCarrinho={fecharCarrinho}
+        produtoEscolhido={produtoEscolhido}
+        setProdutoEscolhido={setProdutoEscolhido}/>;
       case "mercearia":
         return <Mercearia />;
       case "bebidas":
