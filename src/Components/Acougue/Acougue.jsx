@@ -1,48 +1,161 @@
+import { useState } from "react";
 import "./Acougue.css";
 
-function Acougue() {
+function Acougue({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharCarrinho, produtoEscolhido, setProdutoEscolhido }) {
+
+  const [precoFinal, setPrecoFinal] = useState(0)
+  const [mostrarPreco, setMostrarPreco] = useState(false)
+  const [valorDigitado, setValorDigitado] = useState(0)
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false)
+
+  const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([])
+
+  const [qtdEscolhida, setQtdEscolhida] = useState(0)
+  const [qtdEscrita, setQtdEscrita] = useState(0)
+  
+  function escolherProduto(produto){
+    setProdutoEscolhido(produto)
+  }
+
+  function fecharModal(){
+    setPrecoFinal(0)
+    setProdutoEscolhido(null)
+    setMostrarPreco(false)
+  }
+
+function atualizarQtd(valor, origem) {
+  if (valor < 0 || valor > 100000) return
+
+  if (origem === "digitado") {
+    setQtdEscrita(valor)
+    setQtdEscolhida(0)
+    setValorDigitado(valor)
+  } else {
+    setQtdEscrita(0)
+    setQtdEscolhida(valor)
+    setValorDigitado(0)
+  }
+
+  const precoPorKg = Number(
+    produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
+  )
+
+  setPrecoFinal((valor / 1000) * precoPorKg)
+  setMostrarPreco(true)
+}
+
+function addCarrinho(){
+  setProdutosNoCarrinho((prev) => [
+    ...prev,
+    {
+      ...produtoEscolhido,
+      precoFinal: precoFinal.toFixed(2),
+      quantidade: {qtdEscolhida: qtdEscolhida, qtdEscrita: qtdEscrita}
+    }
+  ])
+  setCarrinhoQtd((prev) => prev + 1)
+  setMostrarConfirmacao(true)  
+  fecharModal()
+  setQtdEscrita(0)
+  setQtdEscolhida(0)
+  setValorDigitado(0)
+  setMostrarPreco(false)
+}
+
+function fecharConfirmacao(){
+  setMostrarConfirmacao(false)
+}
+
   return (
-    <section id="acougue" className="acougue">
-      <h2 className="acougue__titulo">Açougue</h2>
+    <>
+      <section className="acougue">
+          <div className="acougue__banner">
+            <h2 className="acougue__titulo">{titulo}</h2>
+            <p className="acougue__subtitulo">Cortes selecionados, frescor garantido</p>
+          </div>
+          <div className="acougue__grid">
+            {produtos.map((produto) => (
+              <div onClick={() => escolherProduto(produto)} className="acougue__card" key={produto.nome}>
+                <div className="acougue__card-imagem" />
+                <span className="acougue__card-nome">{produto.nome}</span>
+                <span className="acougue__card-preco">R$ {produto.preco}</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
-      <div className="acougue__grid">
-        <div className="acougue__card">
-          <div className="acougue__card-imagem" />
-          <span className="acougue__card-nome">Picanha</span>
-          <span className="acougue__card-preco">R$ 54,90 / kg</span>
-        </div>
+        {produtoEscolhido && (
+          <div className="modal__overlay" onClick={fecharModal}>
+            <div className="modal__conteudo" onClick={(e) => e.stopPropagation()}>
+              <button className="modal__fechar" onClick={fecharModal} aria-label="Fechar">✕</button>
 
-        <div className="acougue__card">
-          <div className="acougue__card-imagem" />
-          <span className="acougue__card-nome">Alcatra</span>
-          <span className="acougue__card-preco">R$ 39,90 / kg</span>
-        </div>
+              <h2 className="modal__titulo">{produtoEscolhido.nome}</h2>
+              <p className="modal__preco">R$ {produtoEscolhido.preco}</p>
 
-        <div className="acougue__card">
-          <div className="acougue__card-imagem" />
-          <span className="acougue__card-nome">Frango Inteiro</span>
-          <span className="acougue__card-preco">R$ 9,99 / kg</span>
-        </div>
+              <p className="modal__label">Escolha a quantidade</p>
+              <div className="modal__opcoes">
+                <button className="modal__opcao" onClick={()=> atualizarQtd(500, "botao")}>500 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(700, "botao")}>700 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(1000, "botao")}>1000 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(1500, "botao")}>1500 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(2000, "botao")}>2000 g</button>
+                <button className="modal__opcao" onClick={()=> atualizarQtd(2500, "botao")}>2500 g</button>
+              </div>
 
-        <div className="acougue__card">
-          <div className="acougue__card-imagem" />
-          <span className="acougue__card-nome">Linguiça Toscana</span>
-          <span className="acougue__card-preco">R$ 16,90 / kg</span>
-        </div>
+              <div className="modal__personalizado">
+                <label htmlFor="peso-custom" className="modal__label">Ou digite um valor em gramas</label>
+                <input 
+                value={valorDigitado} 
+                onChange={(e)=> atualizarQtd(e.target.value, "digitado")}
+                id="peso-custom" 
+                type="number" 
+                placeholder="Ex: 850" className="modal__input" />
+              </div>
 
-        <div className="acougue__card">
-          <div className="acougue__card-imagem" />
-          <span className="acougue__card-nome">Costela Bovina</span>
-          <span className="acougue__card-preco">R$ 29,90 / kg</span>
-        </div>
+              <button className="modal__confirmar" onClick={() => addCarrinho()}>Adicionar ao carrinho</button>
+              {mostrarPreco && <h2>Total: {(precoFinal.toFixed(2)).replace(".", ",")}</h2>}
+            </div>
+          </div>
+        )}
 
-        <div className="acougue__card">
-          <div className="acougue__card-imagem" />
-          <span className="acougue__card-nome">Carne Moída</span>
-          <span className="acougue__card-preco">R$ 24,90 / kg</span>
+        {mostrarConfirmacao && (
+          <div className="confirmacao__overlay" onClick={fecharConfirmacao}>
+            <div className="confirmacao__conteudo" onClick={(e) => e.stopPropagation()}>
+              <button className="confirmacao__fechar" onClick={fecharConfirmacao} aria-label="Fechar">✕</button>
+              <p className="confirmacao__icone">✅</p>
+              <h2>Produto adicionado ao carrinho!</h2>
+            </div>
+          </div>
+        )}
+        
+      {mostrarCarrinho && (
+        <div className="carrinho__overlay" onClick={fecharCarrinho}>
+          <div className="carrinho__conteudo" onClick={(e) => e.stopPropagation()}>
+            <button className="carrinho__fechar" onClick={fecharCarrinho} aria-label="Fechar">✕</button>
+            <h2 className="carrinho__titulo">Seu carrinho</h2>
+
+            {produtosNoCarrinho.length === 0 ? (
+              <p className="carrinho__vazio">Seu carrinho está vazio</p>
+            ) : (
+              <div className="carrinho__lista">
+                {produtosNoCarrinho.map((produto, index) => (
+                  <div className="carrinho__card" key={index}>
+                    <div className="carrinho__card-imagem" />
+                    <div className="carrinho__card-info">
+                      <span className="carrinho__card-nome">{produto.nome}</span>
+                      <span className="carrinho__card-qtd">{produto.quantidade.qtdEscolhida ? produto.quantidade.qtdEscolhida : produto.quantidade.qtdEscrita} g</span>
+                    </div>
+                    <span className="carrinho__card-preco">
+                      R$ {produto.precoFinal.replace(".", ",")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      )}
+    </>
   );
 }
 
