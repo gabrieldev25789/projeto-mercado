@@ -78,7 +78,7 @@
   border-radius: 5px;
 }
 
-.modal__overlay {
+.hortifruti-modal__overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
@@ -89,7 +89,7 @@
   z-index: 1000;
 }
 
-.modal__conteudo {
+.hortifruti-modal__conteudo {
   position: relative;
   background: #3a3838;
   border: 1px solid #4a4747;
@@ -114,13 +114,13 @@
   line-height: 1;
 }
 
-.modal__titulo {
+.hortifruti-modal__titulo {
   font-size: 20px;
   font-weight: 800;
   color: #ececec;
 }
 
-.modal__preco {
+.hortifruti-modal__preco {
   font-size: 16px;
   font-weight: 700;
   color: #2e9e44;
@@ -160,7 +160,7 @@
   gap: 6px;
 }
 
-.modal__input {
+.hortifruti-modal__input {
   background: #2b2a2a;
   border: 1px solid #4a4747;
   color: #ececec;
@@ -169,12 +169,12 @@
   font-size: 14px;
 }
 
-.modal__input:focus {
+.hortifruti-modal__input:focus {
   outline: none;
   border-color: #2e9e44;
 }
 
-.modal__confirmar {
+.hortifruti-modal__confirmar {
   background: #2e9e44;
   border: none;
   color: #fff;
