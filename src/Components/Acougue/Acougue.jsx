@@ -1,14 +1,12 @@
 import { useState } from "react";
 import "./Acougue.css";
 
-function Acougue({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharCarrinho, produtoEscolhido, setProdutoEscolhido }) {
+function Acougue({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharCarrinho, produtoEscolhido, setProdutoEscolhido, produtosNoCarrinho, setProdutosNoCarrinho }) {
 
   const [precoFinal, setPrecoFinal] = useState(0)
   const [mostrarPreco, setMostrarPreco] = useState(false)
   const [valorDigitado, setValorDigitado] = useState(0)
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false)
-
-  const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([])
 
   const [qtdEscolhida, setQtdEscolhida] = useState(0)
   const [qtdEscrita, setQtdEscrita] = useState(0)
