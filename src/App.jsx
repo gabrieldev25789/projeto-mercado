@@ -16,6 +16,8 @@ function App() {
 
   const [produtoEscolhido, setProdutoEscolhido] = useState(null)
 
+  const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([])
+
   function mostrarProdutos(){
     console.log("asdsad")
     setMostrarCarrinho(true)
@@ -35,7 +37,9 @@ function App() {
         mostrarCarrinho={mostrarCarrinho} 
         fecharCarrinho={fecharCarrinho}
         setProdutoEscolhido={setProdutoEscolhido}
-        produtoEscolhido={produtoEscolhido}/>;
+        produtoEscolhido={produtoEscolhido}
+        produtosNoCarrinho={produtosNoCarrinho}
+        setProdutosNoCarrinho={setProdutosNoCarrinho}/>;
 
       case "acougue":
         return <Acougue 
@@ -45,7 +49,9 @@ function App() {
         mostrarCarrinho={mostrarCarrinho}
         fecharCarrinho={fecharCarrinho}
         produtoEscolhido={produtoEscolhido}
-        setProdutoEscolhido={setProdutoEscolhido}/>;
+        setProdutoEscolhido={setProdutoEscolhido}
+        produtosNoCarrinho={produtosNoCarrinho}
+        setProdutosNoCarrinho={setProdutosNoCarrinho}/>;
       case "mercearia":
         return <Mercearia />;
       case "bebidas":
