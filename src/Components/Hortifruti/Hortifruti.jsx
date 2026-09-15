@@ -84,12 +84,12 @@ function fecharConfirmacao(){
         </section>
 
         {produtoEscolhido && (
-          <div className="modal__overlay" onClick={fecharModal}>
-            <div className="modal__conteudo" onClick={(e) => e.stopPropagation()}>
+          <div className="hortifruti-modal__overlay" onClick={fecharModal}>
+            <div className="hortifruti-modal__conteudo" onClick={(e) => e.stopPropagation()}>
               <button className="modal__fechar" onClick={fecharModal} aria-label="Fechar">✕</button>
 
-              <h2 className="modal__titulo">{produtoEscolhido.nome}</h2>
-              <p className="modal__preco">R$ {produtoEscolhido.preco}</p>
+              <h2 className="hortifruti-modal__titulo">{produtoEscolhido.nome}</h2>
+              <p className="hortifruti-modal__preco">R$ {produtoEscolhido.preco}</p>
 
               <p className="modal__label">Escolha a quantidade</p>
               <div className="modal__opcoes">
@@ -108,10 +108,10 @@ function fecharConfirmacao(){
                 onChange={(e)=> atualizarQtd(e.target.value, "digitado")}
                 id="peso-custom" 
                 type="number" 
-                placeholder="Ex: 850" className="modal__input" />
+                placeholder="Ex: 850" className="hortifruti-modal__input" />
               </div>
 
-              <button className="modal__confirmar" onClick={() => addCarrinho()}>Adicionar ao carrinho</button>
+              <button className="hortifruti-modal__confirmar" onClick={() => addCarrinho()}>Adicionar ao carrinho</button>
               {mostrarPreco && <h2>Total: {(precoFinal.toFixed(2)).replace(".", ",")}</h2>}
             </div>
           </div>
