@@ -8,7 +8,6 @@ function Hortifruti({ titulo, produtos, setCarrinhoQtd, mostrarCarrinho, fecharC
   const [valorDigitado, setValorDigitado] = useState(0)
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false)
 
-
   const [qtdEscolhida, setQtdEscolhida] = useState(0)
   const [qtdEscrita, setQtdEscrita] = useState(0)
   
@@ -35,11 +34,19 @@ function atualizarQtd(valor, origem) {
     setValorDigitado(0)
   }
 
-  const precoPorKg = Number(
-    produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
-  )
+  const ehPorUnidade = produtoEscolhido.preco.includes("unid")
 
-  setPrecoFinal((valor / 1000) * precoPorKg)
+  if (ehPorUnidade) {
+    const precoUnitario = Number(
+      produtoEscolhido.preco.replace(",", ".").replace(" / unid", "")
+    )
+    setPrecoFinal(valor * precoUnitario)
+  } else {
+    const precoPorKg = Number(
+      produtoEscolhido.preco.replace(",", ".").replace(" / kg", "")
+    )
+    setPrecoFinal((valor / 1000) * precoPorKg)
+  }
   setMostrarPreco(true)
 }
 
@@ -92,6 +99,16 @@ function fecharConfirmacao(){
               <p className="hortifruti-modal__preco">R$ {produtoEscolhido.preco}</p>
 
               <p className="modal__label">Escolha a quantidade</p>
+
+            {produtoEscolhido.preco.includes("unid") ? (
+              <div className="modal__opcoes">
+              <button className="mercearia-modal__opcao" onClick={() => atualizarQtd(1, "botao")}>1 un</button>
+              <button className="mercearia-modal__opcao" onClick={() => atualizarQtd(2, "botao")}>2 un</button>
+              <button className="mercearia-modal__opcao" onClick={() => atualizarQtd(3, "botao")}>3 un</button>
+              <button className="mercearia-modal__opcao" onClick={() => atualizarQtd(5, "botao")}>5 un</button>
+              <button className="mercearia-modal__opcao" onClick={() => atualizarQtd(10, "botao")}>10 un</button> 
+              </div>
+              ) : 
               <div className="modal__opcoes">
                 <button className="modal__opcao" onClick={()=> atualizarQtd(500, "botao")}>500 g</button>
                 <button className="modal__opcao" onClick={()=> atualizarQtd(700, "botao")}>700 g</button>
@@ -99,7 +116,7 @@ function fecharConfirmacao(){
                 <button className="modal__opcao" onClick={()=> atualizarQtd(1500, "botao")}>1500 g</button>
                 <button className="modal__opcao" onClick={()=> atualizarQtd(2000, "botao")}>2000 g</button>
                 <button className="modal__opcao" onClick={()=> atualizarQtd(2500, "botao")}>2500 g</button>
-              </div>
+              </div>}
 
               <div className="modal__personalizado">
                 <label htmlFor="peso-custom" className="modal__label">Ou digite um valor em gramas</label>
