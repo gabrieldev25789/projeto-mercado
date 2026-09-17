@@ -119,7 +119,7 @@ function fecharConfirmacao(){
 
         {mostrarConfirmacao && (
           <div className="confirmacao__overlay" onClick={fecharConfirmacao}>
-            <div className="confirmacao__conteudo" onClick={(e) => e.stopPropagation()}>
+            <div className="hortifruti-confirmacao__conteudo" onClick={(e) => e.stopPropagation()}>
               <button className="confirmacao__fechar" onClick={fecharConfirmacao} aria-label="Fechar">✕</button>
               <p className="confirmacao__icone">✅</p>
               <h2>Produto adicionado ao carrinho!</h2>
