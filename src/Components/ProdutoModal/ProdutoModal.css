@@ -1,7 +1,8 @@
 .produto-modal__overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(10, 8, 8, 0.72);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,45 +12,77 @@
 
 .produto-modal__conteudo {
   position: relative;
-  background: #3a3838;
-  border: 1px solid #4a4747;
-  border-radius: 12px;
-  padding: 28px;
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--cor-corredor) 10%, #262424) 0%,
+    #201f1f 55%
+  );
+  border: 1px solid color-mix(in srgb, var(--cor-corredor) 30%, #423f3f);
+  border-radius: 16px;
+  padding: 32px 28px 28px;
   width: 100%;
   max-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  box-shadow:
+    0 24px 48px -16px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+
+.produto-modal__conteudo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--cor-corredor);
 }
 
 .produto-modal__fechar {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
+  top: 14px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
   border: none;
+  border-radius: 50%;
   color: #ececec;
-  font-size: 18px;
+  font-size: 14px;
   cursor: pointer;
-  line-height: 1;
+  transition: background 0.15s ease;
+}
+
+.produto-modal__fechar:hover {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .produto-modal__titulo {
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 800;
-  color: #ececec;
+  color: #f5f5f5;
+  letter-spacing: 0.2px;
 }
 
 .produto-modal__preco {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--cor-corredor);
   margin-top: -12px;
 }
 
 .produto-modal__label {
-  font-size: 13px;
-  color: #b8b8b8;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #999;
 }
 
 .produto-modal__opcoes {
@@ -59,19 +92,21 @@
 }
 
 .produto-modal__opcao {
-  background: #2b2a2a;
-  border: 1px solid #4a4747;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ececec;
   padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
 
 .produto-modal__opcao:hover {
   border-color: var(--cor-corredor);
-  background: #333131;
+  background: color-mix(in srgb, var(--cor-corredor) 16%, transparent);
+  transform: translateY(-1px);
 }
 
 .produto-modal__personalizado {
@@ -81,31 +116,44 @@
 }
 
 .produto-modal__input {
-  background: #2b2a2a;
-  border: 1px solid #4a4747;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ececec;
-  padding: 10px 12px;
-  border-radius: 6px;
+  padding: 11px 12px;
+  border-radius: 8px;
   font-size: 14px;
+  transition: border-color 0.15s ease;
 }
 
 .produto-modal__input:focus {
   outline: none;
   border-color: var(--cor-corredor);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-corredor) 22%, transparent);
 }
 
 .produto-modal__confirmar {
-  background: var(--cor-corredor);
+  background: linear-gradient(
+    135deg,
+    var(--cor-corredor) 0%,
+    color-mix(in srgb, var(--cor-corredor) 80%, #000) 100%
+  );
   border: none;
   color: #fff;
   font-weight: 700;
-  padding: 12px;
-  border-radius: 6px;
+  padding: 13px;
+  border-radius: 8px;
   font-size: 15px;
   cursor: pointer;
   margin-top: 4px;
+  box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--cor-corredor) 70%, transparent);
+  transition: filter 0.15s ease, transform 0.15s ease;
 }
 
 .produto-modal__confirmar:hover {
-  filter: brightness(0.88);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.produto-modal__confirmar:active {
+  transform: translateY(0);
 }
