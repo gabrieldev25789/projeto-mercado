@@ -1,120 +1,83 @@
 import { useState } from "react";
-import Header from "./Components/Header/Header.jsx"
-import Hortifruti from "./Components/Hortifruti/Hortifruti.jsx";
-import Acougue from "./Components/Acougue/Acougue.jsx";
-import Mercearia from "./Components/Mercearia/Mercearia.jsx";
-import Bebidas from "./Components/Bebidas/Bebidas.jsx";
-import Limpeza from "./Components/Limpeza/Limpeza.jsx";
-import Padaria from "./Components/Padaria/Padaria.jsx";
-import { hortifruti, acougue, mercearia, bebidas, limpeza, padaria } from "../data/dados.js"
+import { corredores } from "../data/dados.js";
+import Corredor from "./Components/Corredor/Corredor.jsx";
+import ProdutoModal from "./Components/ProdutoModal/ProdutoModal.jsx";
+import Confirmacao from "./Components/Confirmacao/Confirmacao.jsx";
+import Carrinho from "./Components/Carrinho/Carrinho.jsx";
+import Header from "./Components/Header/Header.jsx";
 
 function App() {
-  const [ativo, setAtivo] = useState(null);
-
+  const [produtoEscolhido, setProdutoEscolhido] = useState(null)
+  const [corredorEscolhido, setCorredorEscolhido] = useState(null)
+  const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([])
   const [carrinhoQtd, setCarrinhoQtd] = useState(0)
   const [mostrarCarrinho, setMostrarCarrinho] = useState(false)
-
-  const [produtoEscolhido, setProdutoEscolhido] = useState(null)
-
-  const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([])
-
-  function mostrarProdutos(){
-    console.log("asdsad")
-    setMostrarCarrinho(true)
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false)
+ 
+  function escolherProduto(produto, corredor) {
+    setProdutoEscolhido(produto)
+    setCorredorEscolhido(corredor)
   }
-
-  function fecharCarrinho(){
-  setMostrarCarrinho(false)
-}
-
-  function renderCorredor() {
-    switch (ativo) {
-      case "hortifruti":
-        return <Hortifruti 
-        setCarrinhoQtd={setCarrinhoQtd} 
-        titulo={hortifruti.titulo} 
-        produtos={hortifruti.produtos} 
-        mostrarCarrinho={mostrarCarrinho} 
-        fecharCarrinho={fecharCarrinho}
-        setProdutoEscolhido={setProdutoEscolhido}
-        produtoEscolhido={produtoEscolhido}
-        produtosNoCarrinho={produtosNoCarrinho}
-        setProdutosNoCarrinho={setProdutosNoCarrinho}/>;
-
-      case "acougue":
-        return <Acougue 
-        titulo={acougue.titulo}
-        produtos={acougue.produtos}
-        setCarrinhoQtd={setCarrinhoQtd}
-        mostrarCarrinho={mostrarCarrinho}
-        fecharCarrinho={fecharCarrinho}
-        produtoEscolhido={produtoEscolhido}
-        setProdutoEscolhido={setProdutoEscolhido}
-        produtosNoCarrinho={produtosNoCarrinho}
-        setProdutosNoCarrinho={setProdutosNoCarrinho}/>;
-
-      case "mercearia":
-        return <Mercearia 
-        titulo={mercearia.titulo}
-        produtos={mercearia.produtos}
-        setCarrinhoQtd={setCarrinhoQtd}
-        mostrarCarrinho={mostrarCarrinho}
-        fecharCarrinho={fecharCarrinho}
-        produtoEscolhido={produtoEscolhido}
-        setProdutoEscolhido={setProdutoEscolhido}
-        produtosNoCarrinho={produtosNoCarrinho}
-        setProdutosNoCarrinho={setProdutosNoCarrinho}/>;
-        
-      case "bebidas":
-        return <Bebidas 
-        titulo={bebidas.titulo}
-        produtos={bebidas.produtos}
-        setCarrinhoQtd={setCarrinhoQtd}
-        mostrarCarrinho={mostrarCarrinho}
-        fecharCarrinho={fecharCarrinho}
-        produtoEscolhido={produtoEscolhido}
-        setProdutoEscolhido={setProdutoEscolhido}
-        produtosNoCarrinho={produtosNoCarrinho}
-        setProdutosNoCarrinho={setProdutosNoCarrinho}/>;
-
-      case "limpeza":
-        return <Limpeza
-        titulo={limpeza.titulo}
-        produtos={limpeza.produtos}
-        setCarrinhoQtd={setCarrinhoQtd}
-        mostrarCarrinho={mostrarCarrinho}
-        fecharCarrinho={fecharCarrinho}
-        produtoEscolhido={produtoEscolhido}
-        setProdutoEscolhido={setProdutoEscolhido}
-        produtosNoCarrinho={produtosNoCarrinho}
-        setProdutosNoCarrinho={setProdutosNoCarrinho} 
-        />;
-        
-      case "padaria":
-        return <Padaria 
-        titulo={padaria.titulo}
-        produtos={padaria.produtos}
-        setCarrinhoQtd={setCarrinhoQtd}
-        mostrarCarrinho={mostrarCarrinho}
-        fecharCarrinho={fecharCarrinho}
-        produtoEscolhido={produtoEscolhido}
-        setProdutoEscolhido={setProdutoEscolhido}
-        produtosNoCarrinho={produtosNoCarrinho}
-        setProdutosNoCarrinho={setProdutosNoCarrinho}
-        />;
-      default:
-        return <p>Escolha um corredor acima.</p>;
-    }
+ 
+  function fecharModal() {
+    setProdutoEscolhido(null)
+    setCorredorEscolhido(null)
   }
-
-return (
-  <>
-    <Header onSelecionar={setAtivo} carrinhoQtd={carrinhoQtd} 
-    mostrarProdutos={mostrarProdutos}/>
-
-    {renderCorredor()}
-  </>
-);
+ 
+  function adicionarAoCarrinho(item) {
+    setProdutosNoCarrinho((prev) => [...prev, item])
+    setCarrinhoQtd((prev) => prev + 1)
+    setMostrarConfirmacao(true)
+    fecharModal()
+  }
+ 
+  function irParaCorredor(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+  }
+ 
+  return (
+    <>
+      <Header
+        onSelecionar={irParaCorredor}
+        carrinhoQtd={carrinhoQtd}
+        mostrarProdutos={(e) => {
+          e.preventDefault()
+          setMostrarCarrinho(true)
+        }}
+      />
+ 
+      {corredores.map((corredor) => (
+        <Corredor
+          key={corredor.id}
+          id={corredor.id}
+          titulo={corredor.titulo}
+          cor={corredor.cor}
+          produtos={corredor.produtos}
+          onEscolherProduto={(produto) => escolherProduto(produto, corredor)}
+        />
+      ))}
+ 
+      {produtoEscolhido && (
+        <ProdutoModal
+          produto={produtoEscolhido}
+          cor={corredorEscolhido.cor}
+          onFechar={fecharModal}
+          onAdicionar={adicionarAoCarrinho}
+        />
+      )}
+ 
+      {mostrarConfirmacao && (
+        <Confirmacao onFechar={() => setMostrarConfirmacao(false)} />
+      )}
+ 
+      {mostrarCarrinho && (
+        <Carrinho
+          produtos={produtosNoCarrinho}
+          onFechar={() => setMostrarCarrinho(false)}
+        />
+      )}
+    </>
+  );
 }
-
+ 
 export default App
