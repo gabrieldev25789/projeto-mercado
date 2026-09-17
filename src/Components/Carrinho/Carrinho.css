@@ -87,6 +87,28 @@
   font-weight: 700;
 }
 
+.carrinho__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #4a4747;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ececec;
+}
+
+.carrinho__total span:first-child {
+  color: #888;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.carrinho__total span:last-child {
+  color: #4ade80;
+}
+
 @keyframes carrinho-fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
