@@ -1,4 +1,5 @@
 export const acougue = {
+  id: "acougue",
   titulo: "Açougue",
   cor: "#c81d1d",
   produtos: [
@@ -26,6 +27,7 @@ export const acougue = {
 }
 
 export const bebidas = {
+  id: "bebidas",
   titulo: "Bebidas",
   cor: "#1d7fc8",
   produtos: [
@@ -53,6 +55,7 @@ export const bebidas = {
 }
 
 export const hortifruti = {
+  id: "hortifruti",
   titulo: "Hortifruti",
   cor: "#2e9e44",
   produtos: [
@@ -80,6 +83,7 @@ export const hortifruti = {
 }
 
 export const limpeza = {
+  id: "limpeza",
   titulo: "Limpeza",
   cor: "#7a3fc8",
   produtos: [
@@ -107,6 +111,7 @@ export const limpeza = {
 }
 
 export const mercearia = {
+  id: "mercearia",
   titulo: "Mercearia",
   cor: "#ffcc00",
   produtos: [
@@ -134,6 +139,7 @@ export const mercearia = {
 }
 
 export const padaria = {
+  id: "padaria",
   titulo: "Padaria",
   cor: "#c8781d",
   produtos: [
