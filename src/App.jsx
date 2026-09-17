@@ -6,7 +6,7 @@ import Mercearia from "./Components/Mercearia/Mercearia.jsx";
 import Bebidas from "./Components/Bebidas/Bebidas.jsx";
 import Limpeza from "./Components/Limpeza/Limpeza.jsx";
 import Padaria from "./Components/Padaria/Padaria.jsx";
-import { hortifruti, acougue, mercearia, bebidas, limpeza } from "../data/dados.js"
+import { hortifruti, acougue, mercearia, bebidas, limpeza, padaria } from "../data/dados.js"
 
 function App() {
   const [ativo, setAtivo] = useState(null);
@@ -91,7 +91,17 @@ function App() {
         />;
         
       case "padaria":
-        return <Padaria />;
+        return <Padaria 
+        titulo={padaria.titulo}
+        produtos={padaria.produtos}
+        setCarrinhoQtd={setCarrinhoQtd}
+        mostrarCarrinho={mostrarCarrinho}
+        fecharCarrinho={fecharCarrinho}
+        produtoEscolhido={produtoEscolhido}
+        setProdutoEscolhido={setProdutoEscolhido}
+        produtosNoCarrinho={produtosNoCarrinho}
+        setProdutosNoCarrinho={setProdutosNoCarrinho}
+        />;
       default:
         return <p>Escolha um corredor acima.</p>;
     }
