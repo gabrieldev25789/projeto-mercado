@@ -18,12 +18,13 @@ function Carrinho({ produtos, onFechar, onRemover }) {
         ) : (
           <>
             <div className="carrinho__lista">
-              {produtos.map((produto, index) => {
-                const qtd = produto.quantidade.qtdEscolhida || produto.quantidade.qtdEscrita;
-                const rotuloQtd = produto.unidade === "kg" ? `${qtd} g` : `${qtd} ${produto.unidade}`;
+              {produtos.map((produto) => {
+                const rotuloQtd = produto.modo === "peso"
+                  ? `${produto.quantidade} g`
+                  : `${produto.quantidade} ${produto.unidade}`;
 
                 return (
-                  <div className="carrinho__card" key={index}>
+                  <div className="carrinho__card" key={produto.idCarrinho}>
                     <div className="carrinho__card-imagem" />
                     <div className="carrinho__card-info">
                       <span className="carrinho__card-nome">{produto.nome}</span>
@@ -32,7 +33,7 @@ function Carrinho({ produtos, onFechar, onRemover }) {
                     <span className="carrinho__card-preco">
                       R$ {produto.precoFinal.replace(".", ",")}
                     </span>
-                    <button onClick={()=> onRemover(produto.idCarrinho)} >X</button>
+                    <button onClick={() => onRemover(produto.idCarrinho)}>X</button>
                   </div>
                 );
               })}
