@@ -28,15 +28,18 @@ function ProdutoModal({ produto, cor, onFechar, onAdicionar }) {
     setMostrarPreco(true)
   }
 
-  function confirmar() {
-    onAdicionar({
-      ...produto,
-      precoFinal: precoFinal.toFixed(2),
-      unidade,
-      quantidade: { qtdEscolhida, qtdEscrita },
-    })
-  }
+function confirmar() {
+  const quantidade = qtdEscrita || qtdEscolhida
 
+  onAdicionar({
+    ...produto,
+    unidade,
+    modo,
+    quantidade,
+    precoUnitario: calcular(modo === "peso" ? 1000 : 1), // preço de 1kg ou 1 unidade
+    precoFinal: precoFinal.toFixed(2),
+  })
+}
   const opcoesPeso = [500, 700, 1000, 1500, 2000, 2500]
   const opcoesUnidade = [1, 2, 3, 5, 10]
   const opcoes = modo === "peso" ? opcoesPeso : opcoesUnidade
