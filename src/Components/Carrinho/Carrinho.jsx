@@ -1,6 +1,6 @@
 import "./Carrinho.css";
 
-function Carrinho({ produtos, onFechar }) {
+function Carrinho({ produtos, onFechar, onRemover }) {
   
   const total = produtos.reduce(
     (acc, produto) => acc + Number(produto.precoFinal),
@@ -32,6 +32,7 @@ function Carrinho({ produtos, onFechar }) {
                     <span className="carrinho__card-preco">
                       R$ {produto.precoFinal.replace(".", ",")}
                     </span>
+                    <button onClick={()=> onRemover(produto.idCarrinho)} >X</button>
                   </div>
                 );
               })}
