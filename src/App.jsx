@@ -33,7 +33,22 @@ function adicionarAoCarrinho(item) {
 }
 
 function removerProduto(idCarrinho) {
-  setProdutosNoCarrinho((prev) => prev.filter((item) => item.idCarrinho !== idCarrinho))
+  setProdutosNoCarrinho((prev) =>
+    prev.flatMap((item) => {
+      if (item.idCarrinho !== idCarrinho) return item
+
+      // peso: remove o item inteiro direto
+      if (item.modo === "peso") return []
+
+      // unidade: decrementa 1, e remove só quando chegar a 0
+      const novaQtd = item.quantidade - 1
+      if (novaQtd <= 0) return []
+
+      const novoPreco = novaQtd * item.precoUnitario
+
+      return { ...item, quantidade: novaQtd, precoFinal: novoPreco.toFixed(2) }
+    })
+  )
   setCarrinhoQtd((prev) => prev - 1)
 }
  
