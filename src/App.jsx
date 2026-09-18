@@ -24,12 +24,18 @@ function App() {
     setCorredorEscolhido(null)
   }
  
-  function adicionarAoCarrinho(item) {
-    setProdutosNoCarrinho((prev) => [...prev, item])
-    setCarrinhoQtd((prev) => prev + 1)
-    setMostrarConfirmacao(true)
-    fecharModal()
-  }
+function adicionarAoCarrinho(item) {
+  const itemComId = { ...item, idCarrinho: crypto.randomUUID() }
+  setProdutosNoCarrinho((prev) => [...prev, itemComId])
+  setCarrinhoQtd((prev) => prev + 1)
+  setMostrarConfirmacao(true)
+  fecharModal()
+}
+
+function removerProduto(idCarrinho) {
+  setProdutosNoCarrinho((prev) => prev.filter((item) => item.idCarrinho !== idCarrinho))
+  setCarrinhoQtd((prev) => prev - 1)
+}
  
   function irParaCorredor(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
@@ -74,6 +80,7 @@ function App() {
         <Carrinho
           produtos={produtosNoCarrinho}
           onFechar={() => setMostrarCarrinho(false)}
+          onRemover={removerProduto}
         />
       )}
     </>
